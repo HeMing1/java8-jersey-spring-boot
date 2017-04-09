@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Component
 @Transactional
@@ -33,7 +34,9 @@ public class BService implements Loggable{
 
     public B addB(B b){
         BModel bModel = mapper.map(b,BModel.class);
+        bModel.setTime_created(new Date());
         bModel.setA(mapper.map(b.getA(), AModel.class));
+        bModel.getA().setTime_created(new Date());
         bDao.save(bModel);
         B addedB = mapper.map(bModel,B.class);
         addedB.setA(mapper.map(bModel.getA(),A.class));
@@ -43,9 +46,10 @@ public class BService implements Loggable{
     public B updateB(B b){
         BModel bModel = mapper.map(b,BModel.class);
         bModel.setA(mapper.map(b.getA(), AModel.class));
-        bDao.update(bModel);
-        B updB = mapper.map(bModel,B.class);
-        updB.setA(mapper.map(bModel.getA(),A.class));
+        bModel.getA().setTime_created(new Date());
+        BModel updBModel = bDao.update(bModel);
+        B updB = mapper.map(updBModel,B.class);
+        updB.setA(mapper.map(updBModel.getA(),A.class));
         return updB;
     }
 
