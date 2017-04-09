@@ -41,7 +41,6 @@ public class AEndPointTest {
     @Autowired
     private AService aService;
 
-    private RestTemplate restTemplate = new TestRestTemplate();
     private String url = "http://localhost:8080/gaia/rest";
     private Client client = ClientBuilder.newClient();
 
