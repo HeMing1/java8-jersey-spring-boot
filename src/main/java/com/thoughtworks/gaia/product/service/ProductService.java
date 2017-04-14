@@ -6,6 +6,7 @@ import com.thoughtworks.gaia.product.ProductMapper;
 import com.thoughtworks.gaia.product.dao.ProductDao;
 import com.thoughtworks.gaia.product.entity.Product;
 import com.thoughtworks.gaia.product.model.ProductModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
