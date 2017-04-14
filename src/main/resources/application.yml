@@ -35,7 +35,7 @@ gaia:
     allow_public_access: true
 
 server:
-  port: 8080
+  port: 8090
   context-path: /gaia/rest
 
 ---

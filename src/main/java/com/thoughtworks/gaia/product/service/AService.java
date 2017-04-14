@@ -46,8 +46,12 @@ public class AService implements Loggable{
     }
 
     public A updateA(A a){
-        AModel aModel = mapper.map(a,AModel.class);
-        aDao.update(aModel);
+        AModel aModel = aDao.idEquals(a.getId()).querySingle();
+        if(aModel==null){
+            throw new NotFoundException();
+        }
+        AModel newA = mapper.map(a,AModel.class);
+        aDao.update(newA);
         return mapper.map(aModel,A.class);
     }
 }

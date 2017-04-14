@@ -1,5 +1,7 @@
 package com.thoughtworks.gaia.product.endpoint;
 
+import com.eureka2.shading.codehaus.jackson.JsonParseException;
+import com.eureka2.shading.codehaus.jackson.map.JsonMappingException;
 import com.eureka2.shading.codehaus.jackson.map.ObjectMapper;
 import com.thoughtworks.gaia.product.entity.A;
 import com.thoughtworks.gaia.product.service.AService;
@@ -48,15 +50,16 @@ public class AEndPoint {
             @ApiResponse(code = 404, message = "failed")
     })
     @POST
-    public Response addA(@RequestParam String aJson) {
+    public Response addA(@RequestParam String aJson) throws JsonParseException {
         A a = new A();
         try {
             a = objectMapper.readValue(aJson, A.class);
+        } catch (JsonParseException e) {
+            throw e;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        aService.addA(a);
-        return Response.ok().entity(a).build();
+        return Response.ok().entity(aService.addA(a)).build();
     }
 
     @Path("/{a_id}")
@@ -69,11 +72,12 @@ public class AEndPoint {
     public Response updateA(
             @PathParam("a_id") Long a_id,
             @RequestParam String aJson
-    ) {
-        A a = new A();
-
+    ) throws JsonParseException {
+        A a = null;
         try {
-            a = objectMapper.readValue(aJson,A.class);
+            a = objectMapper.readValue(aJson, A.class);
+        } catch (JsonParseException e) {
+            throw e;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,10 +87,10 @@ public class AEndPoint {
     }
 
     @Path("/{a_id}")
-    @ApiOperation(value = "delete A",response = A.class)
+    @ApiOperation(value = "delete A", response = A.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200,message = "successful"),
-            @ApiResponse(code=404,message = "failed")
+            @ApiResponse(code = 200, message = "successful"),
+            @ApiResponse(code = 404, message = "failed")
     })
     @DELETE
     public Response delA(@PathParam("a_id") Long a_id) {
