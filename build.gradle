@@ -67,6 +67,7 @@ dependencies {
 
     testCompile("com.h2database:h2")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2:2.22.2")
 
     testCompile libraries.assertj_core
 }
@@ -97,9 +98,9 @@ allprojects {
         }
     }
 
-    findbugs {
-        excludeFilter = new File(project(":").projectDir, "config/findbugs/excludeBugsFilter.xml")
-    }
+//    findbugs {
+//        excludeFilter = new File(project(":").projectDir, "config/findbugs/excludeBugsFilter.xml")
+//    }
 
     tasks.withType(FindBugs) {
         reports {
