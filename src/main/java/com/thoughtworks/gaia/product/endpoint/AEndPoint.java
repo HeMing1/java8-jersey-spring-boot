@@ -73,7 +73,7 @@ public class AEndPoint {
             @PathParam("a_id") Long a_id,
             @RequestParam String aJson
     ) throws JsonParseException {
-        A a = null;
+        A a = new A();
         try {
             a = objectMapper.readValue(aJson, A.class);
         } catch (JsonParseException e) {
