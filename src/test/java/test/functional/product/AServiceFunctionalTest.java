@@ -56,13 +56,13 @@ public class AServiceFunctionalTest {
         aModel.setTime_created(new Date());
         return aModel;
     }
-    @Test
-    public void test_addA() throws Exception {
-        AModel aModel = getAModel();
-        A a = mapper.map(aModel,A.class);
-        A addedA = aService.addA(a);
-        assertThat(addedA.getId()).isEqualTo(1L);
-    }
+//    @Test
+//    public void test_addA() throws Exception {
+//        AModel aModel = getAModel();
+//        A a = mapper.map(aModel,A.class);
+//        A addedA = aService.addA(a);
+//        assertThat(addedA.getId()).isEqualTo(1L);
+//    }
 
     @Test
     public void test_deleteA() throws Exception {

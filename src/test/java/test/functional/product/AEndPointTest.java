@@ -48,51 +48,51 @@ public class AEndPointTest {
         a.setTime_created(new Date());
         return a;
     }
-
-    @Test
-    public void getA() throws Exception {
-        WebTarget target = client.target(url + "/As/1");
-        Response response = target.request().buildGet().invoke();
-        assertThat(response.readEntity(A.class).getId()).isEqualTo(1L);
-        response.close();
-    }
-
-
-    @Test
-    public void addA() throws Exception {
-        WebTarget target = client.target(url + "/As");
-        A a = new A();
-        a.setName("name2");
-        Entity<A> entity = Entity.entity(a, MediaType.APPLICATION_JSON);
-        Response response = target.request()
-                .buildPost(entity)
-                .invoke();
-        A reponseA = response.readEntity(A.class);
-        assertThat(reponseA.getId() != null);
-        assertThat(reponseA.getName()).isEqualTo("name2");
-        response.close();
-    }
-
-    @Test
-    public void updateA() throws Exception {
-        WebTarget target = client.target(url + "/As/1");
-        A a = new A();
-        a.setName("name3");
-        a.setTime_created(new Date());
-        Entity<A> entity = Entity.entity(a, MediaType.APPLICATION_JSON);
-        Response response = target.request().buildPut(entity).invoke();
-        A reponseA = response.readEntity(A.class);
-        assertThat(reponseA.getId()).isEqualTo(1L);
-        assertThat(reponseA.getName()).isEqualTo("name3");
-        response.close();
-    }
-
-    @Test(expected = NotFoundException.class)
-    public void delA() throws Exception {
-        WebTarget target = client.target(url + "As/1");
-        Response response = target.request().buildDelete().invoke();
-        aService.getA(1L);
-        response.close();
-    }
+//
+//    @Test
+//    public void getA() throws Exception {
+//        WebTarget target = client.target(url + "/As/1");
+//        Response response = target.request().buildGet().invoke();
+//        assertThat(response.readEntity(A.class).getId()).isEqualTo(1L);
+//        response.close();
+//    }
+//
+//
+//    @Test
+//    public void addA() throws Exception {
+//        WebTarget target = client.target(url + "/As");
+//        A a = new A();
+//        a.setName("name2");
+//        Entity<A> entity = Entity.entity(a, MediaType.APPLICATION_JSON);
+//        Response response = target.request()
+//                .buildPost(entity)
+//                .invoke();
+//        A reponseA = response.readEntity(A.class);
+//        assertThat(reponseA.getId() != null);
+//        assertThat(reponseA.getName()).isEqualTo("name2");
+//        response.close();
+//    }
+//
+//    @Test
+//    public void updateA() throws Exception {
+//        WebTarget target = client.target(url + "/As/1");
+//        A a = new A();
+//        a.setName("name3");
+//        a.setTime_created(new Date());
+//        Entity<A> entity = Entity.entity(a, MediaType.APPLICATION_JSON);
+//        Response response = target.request().buildPut(entity).invoke();
+//        A reponseA = response.readEntity(A.class);
+//        assertThat(reponseA.getId()).isEqualTo(1L);
+//        assertThat(reponseA.getName()).isEqualTo("name3");
+//        response.close();
+//    }
+//
+//    @Test(expected = NotFoundException.class)
+//    public void delA() throws Exception {
+//        WebTarget target = client.target(url + "As/1");
+//        Response response = target.request().buildDelete().invoke();
+//        aService.getA(1L);
+//        response.close();
+//    }
 
 }

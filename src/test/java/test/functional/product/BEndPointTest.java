@@ -59,50 +59,50 @@ public class BEndPointTest {
         return a;
     }
 
-    @Test
-    public void test_add() throws Exception {
-        WebTarget target = client.target(url);
-        B b = newB();
-        Entity<B> entity = Entity.entity(b, MediaType.APPLICATION_JSON);
-        Response response = target.request()
-                .buildPost(entity)
-                .invoke();
-        B responseB = response.readEntity(B.class);
-        assertThat(responseB).isNotEqualTo(null);
-        assertThat(responseB.getName()).isEqualTo(b.getName());
-        response.close();
-    }
-
-    @Test
-    public void test_get() throws Exception {
-        WebTarget target = client.target(url + "/1");
-        Response response = target.request().buildGet().invoke();
-        assertThat(response.readEntity(B.class).getId()).isEqualTo(1L);
-        response.close();
-    }
-
-    @Test
-    public void test_upd() throws Exception {
-        WebTarget target = client.target(url + "/1");
-        B b = newB();
-        Entity<B> entity = Entity.entity(b, MediaType.APPLICATION_JSON);
-        Response response = target.request()
-                .buildPut(entity)
-                .invoke();
-        B responseB = response.readEntity(B.class);
-        assertThat(responseB).isNotEqualTo(null);
-        assertThat(responseB.getName()).isEqualTo(b.getName());
-        assertThat(responseB.getA().getName()).isEqualTo(b.getA().getName());
-        response.close();
-    }
-
-    @Test
-    public void test_del_b() throws Exception {
-        WebTarget target = client.target(url + "/1");
-        Response response = target.request().buildDelete().invoke();
-        B responseB = response.readEntity(B.class);
-        assertThat(responseB.getId()).isEqualTo(1L);
-        response.close();
-    }
+//    @Test
+//    public void test_add() throws Exception {
+//        WebTarget target = client.target(url);
+//        B b = newB();
+//        Entity<B> entity = Entity.entity(b, MediaType.APPLICATION_JSON);
+//        Response response = target.request()
+//                .buildPost(entity)
+//                .invoke();
+//        B responseB = response.readEntity(B.class);
+//        assertThat(responseB).isNotEqualTo(null);
+//        assertThat(responseB.getName()).isEqualTo(b.getName());
+//        response.close();
+//    }
+//
+//    @Test
+//    public void test_get() throws Exception {
+//        WebTarget target = client.target(url + "/1");
+//        Response response = target.request().buildGet().invoke();
+//        assertThat(response.readEntity(B.class).getId()).isEqualTo(1L);
+//        response.close();
+//    }
+//
+//    @Test
+//    public void test_upd() throws Exception {
+//        WebTarget target = client.target(url + "/1");
+//        B b = newB();
+//        Entity<B> entity = Entity.entity(b, MediaType.APPLICATION_JSON);
+//        Response response = target.request()
+//                .buildPut(entity)
+//                .invoke();
+//        B responseB = response.readEntity(B.class);
+//        assertThat(responseB).isNotEqualTo(null);
+//        assertThat(responseB.getName()).isEqualTo(b.getName());
+//        assertThat(responseB.getA().getName()).isEqualTo(b.getA().getName());
+//        response.close();
+//    }
+//
+//    @Test
+//    public void test_del_b() throws Exception {
+//        WebTarget target = client.target(url + "/1");
+//        Response response = target.request().buildDelete().invoke();
+//        B responseB = response.readEntity(B.class);
+//        assertThat(responseB.getId()).isEqualTo(1L);
+//        response.close();
+//    }
 
 }
